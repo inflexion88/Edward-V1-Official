@@ -28,36 +28,15 @@ const VoiceResponsiveCircles = () => {
   } = useVoiceRecognition();
   const [isElevenLabsActive, setIsElevenLabsActive] = useState(false);
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
-  const [simulatedAudioLevel, setSimulatedAudioLevel] = useState(0);
-
-  // Simulate a gentle idle pulse animation without hardware access
-  useEffect(() => {
-    let animationFrame: number;
-    let time = 0;
-
-    const animate = () => {
-      // Create a gentle sine wave pulse (0.3 to 0.7 range)
-      const pulse = 0.5 + Math.sin(time * 0.05) * 0.2;
-      setSimulatedAudioLevel(pulse);
-      time += 1;
-      animationFrame = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     // Listen for ElevenLabs widget events
     const handleElevenLabsStart = () => {
-      console.log('ElevenLabs widget activated');
+      console.log('ElevenLabs widget activated - starting our microphone');
       setIsElevenLabsActive(true);
-      // Note: No longer starting hardware microphone access
+      if (!isListening) {
+        startListening();
+      }
     };
 
     const handleElevenLabsStop = () => {
@@ -76,6 +55,15 @@ const VoiceResponsiveCircles = () => {
       window.addEventListener('elevenlabs-conversation-end', handleElevenLabsStop);
     }
 
+    // Also listen for general microphone activation events
+    const handleMicrophoneAccess = () => {
+      if (!isListening) {
+        startListening();
+      }
+    };
+
+    // Listen for media stream events
+    navigator.mediaDevices?.addEventListener?.('devicechange', handleMicrophoneAccess);
     return () => {
       if (elevenLabsWidget) {
         elevenLabsWidget.removeEventListener('click', handleElevenLabsStart);
@@ -83,8 +71,9 @@ const VoiceResponsiveCircles = () => {
       window.removeEventListener('elevenlabs-start', handleElevenLabsStart);
       window.removeEventListener('elevenlabs-conversation-start', handleElevenLabsStart);
       window.removeEventListener('elevenlabs-conversation-end', handleElevenLabsStop);
+      navigator.mediaDevices?.removeEventListener?.('devicechange', handleMicrophoneAccess);
     };
-  }, []);
+  }, [isListening, startListening]);
 
   return <div className="flex flex-col items-center justify-center min-h-screen bg-black overflow-hidden relative">
       <AnimatedBackground />
@@ -93,8 +82,8 @@ const VoiceResponsiveCircles = () => {
       <GlassNavigation />
 
       <VoiceHeader />
-      <VoiceCircles isListening={true} audioLevel={simulatedAudioLevel} isElevenLabsActive={isElevenLabsActive} />
-      <VoiceControls isListening={false} onToggleListening={toggleListening} audioLevel={simulatedAudioLevel} />
+      <VoiceCircles isListening={isListening} audioLevel={audioLevel} isElevenLabsActive={isElevenLabsActive} />
+      <VoiceControls isListening={isListening} onToggleListening={toggleListening} audioLevel={audioLevel} />
 
       {/* ElevenLabs Conversational AI Widget */}
       <elevenlabs-convai agent-id="agent_9201k5x8gk3wevhsnhepg3xqgsd3" className="my-0 py-0"></elevenlabs-convai>
