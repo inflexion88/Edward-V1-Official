@@ -1,0 +1,289 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Glass effect styles with browser fallbacks */
+.glass-grid {
+  font-size: 5vmin;
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.glass-effect {
+  /* Fallback for browsers that don't support oklch */
+  background-color: rgba(255, 255, 255, 0.1);
+  background-color: oklch(1 0 0 / 10%);
+  backdrop-filter: blur(0.25em) brightness(1.2) saturate(1.2);
+  -webkit-backdrop-filter: blur(0.25em) brightness(1.2) saturate(1.2);
+  min-height: 4em;
+  min-width: 4em;
+  border-radius: 2em;
+  box-shadow:
+    /* direct "classic" shadow */
+    0 0.1em 0.25em 0 rgba(0, 0, 0, 0.15),
+    0 0.1em 0.25em 0 oklch(0 0 0 / 15%), 
+    /* ambient shadow */
+    0 0 1em 0 rgba(0, 0, 0, 0.125),
+    0 0 1em 0 oklch(0 0 0 / 12.5%),      
+    /* top left corner highlight */
+    inset 0.075em 0.075em 0.05em 0 rgba(255, 255, 255, 0.4),
+    inset 0.075em 0.075em 0.05em 0 oklch(1 0 0 / 40%), 
+    /* bottom right corner highlight */
+    inset -0.075em -0.075em 0.05em 0 rgba(255, 255, 255, 0.4),
+    inset -0.075em -0.075em 0.05em 0 oklch(1 0 0 / 40%), 
+    /* inside shadow, occlusion arround the corners */
+    inset 0 0 3em .5em rgba(0, 0, 0, 0.2),
+    inset 0 0 3em .5em oklch(0 0 0 / 20%); 
+
+  transform: scale(1);
+  transition: transform .1s ease-out, background-color .15s ease-out;
+}
+
+.glass-effect:hover {
+  transform: scale(1.02);
+  /* Fallback for browsers that don't support oklch */
+  background-color: rgba(255, 255, 255, 0.15);
+  background-color: oklch(1 0 0 / 15%);
+}
+
+/* Enhanced Apple Glass Container */
+.apple-glass-container {
+  /* Premium glass background with vibrant blur */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  background-color: oklch(1 0 0 / 10%);
+  backdrop-filter: blur(40px) saturate(180%) brightness(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.1);
+
+  /* Elegant border with gradient */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+
+  /* Premium shadow system - layered for depth */
+  box-shadow:
+    /* Soft outer glow */
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    /* Ambient shadow */
+    0 2px 16px 0 rgba(0, 0, 0, 0.25),
+    /* Top highlight */
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
+    /* Bottom highlight */
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.3),
+    /* Inner glow for luminosity */
+    inset 0 0 60px 0 rgba(255, 255, 255, 0.05);
+
+  /* Smooth transitions */
+  transform: scale(1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Prevent text selection issues on glass */
+  position: relative;
+  isolation: isolate;
+}
+
+.apple-glass-container:hover {
+  transform: translateY(-2px) scale(1.005);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 12px 48px 0 rgba(0, 0, 0, 0.42),
+    0 4px 24px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 0 60px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .apple-glass-container {
+    backdrop-filter: blur(30px) saturate(160%) brightness(1.1);
+    -webkit-backdrop-filter: blur(30px) saturate(160%) brightness(1.1);
+    border-radius: 20px;
+    padding: 1.5rem !important;
+  }
+}
+
+/* Elegant Modal Container - Ultra refined glass */
+.elegant-modal-container {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(60px) saturate(150%);
+  -webkit-backdrop-filter: blur(60px) saturate(150%);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+
+  box-shadow:
+    0 20px 60px 0 rgba(0, 0, 0, 0.5),
+    0 4px 20px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Elegant Navigation Container - Matching refined glass */
+.elegant-nav-container {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+
+  border-bottom: 1px solid rgba(0, 255, 255, 0.12);
+
+  box-shadow:
+    0 4px 20px 0 rgba(0, 0, 0, 0.3),
+    0 1px 4px 0 rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+    0 0 30px 0 rgba(0, 255, 255, 0.05);
+
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Modal animations */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-in {
+  animation: modalFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-1-1 {
+
+}
+
+.glass-2-1 {
+  grid-column: 2 span;
+}
+
+.glass-4-1 {
+  grid-column: 4 span;
+}
+
+.glass-2-2 {
+  grid-column: 2 span;
+  grid-row: 2 span;
+}
