@@ -131,6 +131,30 @@ const VoiceResponsiveCircles = () => {
         </div>
       )}
 
+      {/* CTA Section */}
+      <div className="fixed bottom-12 left-0 right-0 z-0 flex justify-center pb-4">
+        <a
+          href="https://troyassoignon.com/contact.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-8 py-4 rounded-full
+                     bg-cyan-500/20 backdrop-blur-md
+                     border border-cyan-400/40
+                     text-white text-sm font-medium tracking-wide
+                     hover:bg-cyan-500/30 hover:border-cyan-400/60 hover:scale-105
+                     transition-all duration-300 ease-out
+                     shadow-[0_0_30px_rgba(0,255,255,0.2)] hover:shadow-[0_0_40px_rgba(0,255,255,0.35)]
+                     group"
+        >
+          <span className="block text-center">
+            Want this built for your company?{' '}
+            <span className="text-cyan-400 group-hover:text-cyan-300 font-semibold">
+              Contact us →
+            </span>
+          </span>
+        </a>
+      </div>
+
       {/* Attribution Footer */}
       <footer className="fixed bottom-0 left-0 right-0 z-0 py-2 bg-gradient-to-t from-black/80 to-transparent">
         <p className="text-[10px] text-white/30 text-center tracking-wide">
