@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import AnimatedBackground from '@/components/voice/AnimatedBackground';
 
 const FAQ = () => {
   const faqs = [
@@ -17,7 +18,7 @@ const FAQ = () => {
     },
     {
       question: "How much does a positioning expert cost?",
-      answer: "Positioning expert fees vary based on scope and experience. Strategic positioning projects typically range from $15,000 to $100,000+ for comprehensive engagements. Fractional positioning advisors may charge $5,000-$20,000 per month. AI-powered positioning tools like Edward offer more accessible options for initial positioning guidance. The ROI often justifies the investment—strong positioning can dramatically improve conversion rates, shorten sales cycles, and enable premium pricing."
+      answer: "Positioning expert fees vary based on scope and experience. Strategic positioning projects typically range from $15,000 to $100,000+ for comprehensive engagements. Fractional positioning advisors may charge $5,000-$20,000 per month. AI-powered positioning tools like Edward offer more accessible options for initial positioning guidance. The ROI often justifies the investment. Strong positioning can dramatically improve conversion rates, shorten sales cycles, and enable premium pricing."
     },
     {
       question: "How to choose a positioning expert?",
@@ -25,7 +26,7 @@ const FAQ = () => {
     },
     {
       question: "What is the difference between a positioning expert and a marketing consultant?",
-      answer: "While marketing consultants focus on execution tactics (campaigns, channels, content), positioning experts focus on strategic foundation—the 'what' and 'why' that drives all marketing. Positioning comes before marketing execution. A positioning expert defines your unique market position, target audience, and core narrative; marketing consultants then execute campaigns based on that positioning. Think of positioning as the foundation and marketing as the house built on top."
+      answer: "While marketing consultants focus on execution tactics (campaigns, channels, content), positioning experts focus on strategic foundation: the 'what' and 'why' that drives all marketing. Positioning comes before marketing execution. A positioning expert defines your unique market position, target audience, and core narrative; marketing consultants then execute campaigns based on that positioning. Think of positioning as the foundation and marketing as the house built on top."
     },
     {
       question: "Can AI help with positioning strategy?",
@@ -65,8 +66,9 @@ const FAQ = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-black text-white">
-        <div className="max-w-4xl mx-auto px-6 py-20">
+      <div className="min-h-screen bg-black text-white relative overflow-hidden">
+        <AnimatedBackground />
+        <div className="max-w-4xl mx-auto px-6 py-20 relative z-10">
           {/* Header */}
           <div className="mb-16 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -82,7 +84,7 @@ const FAQ = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="border border-cyan-400/20 rounded-lg p-8 bg-cyan-500/5 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300"
+                className="border border-cyan-400/20 rounded-lg p-8 bg-cyan-500/5 backdrop-blur-md hover:border-cyan-400/40 transition-all duration-300 shadow-[0_0_30px_rgba(0,255,255,0.15)] hover:shadow-[0_0_40px_rgba(0,255,255,0.25)]"
               >
                 <h2 className="text-2xl font-semibold mb-4 text-cyan-400">
                   {faq.question}
@@ -95,7 +97,7 @@ const FAQ = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="mt-16 text-center p-12 border border-cyan-400/30 rounded-lg bg-cyan-500/5 backdrop-blur-sm">
+          <div className="mt-16 text-center p-12 border border-cyan-400/30 rounded-lg bg-cyan-500/5 backdrop-blur-md shadow-[0_0_30px_rgba(0,255,255,0.2)]">
             <h2 className="text-3xl font-bold mb-4">Ready to Talk to a Positioning Expert?</h2>
             <p className="text-xl text-white/70 mb-8">
               Try Edward, our AI positioning intelligence agent, or contact Troy Assoignon directly.
@@ -103,7 +105,7 @@ const FAQ = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/"
-                className="px-8 py-4 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-white font-medium hover:bg-cyan-500/30 hover:scale-105 transition-all duration-300"
+                className="px-8 py-4 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-white font-medium hover:bg-cyan-500/30 hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,255,255,0.2)] hover:shadow-[0_0_30px_rgba(0,255,255,0.35)]"
               >
                 Try Edward Now
               </a>
@@ -111,7 +113,7 @@ const FAQ = () => {
                 href="https://troyassoignon.com/contact.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 rounded-full bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 hover:scale-105 transition-all duration-300"
+                className="px-8 py-4 rounded-full bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
               >
                 Contact Troy
               </a>
