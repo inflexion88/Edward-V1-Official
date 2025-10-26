@@ -88,21 +88,6 @@ const VoiceResponsiveCircles = () => {
       {/* ElevenLabs Conversational AI Widget */}
       <elevenlabs-convai agent-id="agent_9201k5x8gk3wevhsnhepg3xqgsd3" className="my-0 py-0"></elevenlabs-convai>
 
-      {/* Email Modal Trigger Button */}
-      <button
-        onClick={() => setIsEmailModalOpen(true)}
-        className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-10
-                   px-6 py-3 rounded-full
-                   bg-cyan-500/10 backdrop-blur-md
-                   border border-cyan-400/30
-                   text-white text-sm font-medium tracking-wide
-                   hover:bg-cyan-500/15 hover:border-cyan-400/50 hover:scale-105
-                   transition-all duration-300 ease-out
-                   shadow-[0_0_20px_rgba(0,255,255,0.15)] hover:shadow-[0_0_30px_rgba(0,255,255,0.25)]"
-      >
-        Click here for Access to Edward V2
-      </button>
-
       {/* Email Modal */}
       {isEmailModalOpen && (
         <div
