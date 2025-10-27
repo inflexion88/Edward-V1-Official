@@ -199,6 +199,10 @@ const PositioningGlossary = () => {
     {
       term: "Thought Leadership",
       definition: "Positioning yourself or your company as an expert, innovator, and trusted authority in your domain. Thought leadership positioning is built through original research, insights, content, speaking, and ideas that advance the industry's thinking. Strong thought leadership makes your brand the go-to resource and can differentiate even when products are similar to competitors."
+    },
+    {
+      term: "Category Leadership",
+      definition: "Being recognized as the defining player, standard-bearer, and most influential company in a market category. Category leaders shape customer expectations, set evaluation criteria, and are the default choice prospects consider first. Leadership positioning emphasizes market dominance, trust, reliability, and industry standard status. Maintaining category leadership requires continuous innovation, thought leadership, and reinforcement of your role as the category definer. Leaders defend their position by making the category and their brand synonymous."
     }
   ];
 
