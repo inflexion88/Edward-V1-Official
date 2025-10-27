@@ -8,6 +8,9 @@ import ResponsiveRouteHandler from "./components/ResponsiveRouteHandler";
 import NotFound from "./pages/NotFound";
 import FAQ from "./pages/FAQ";
 import About from "./pages/About";
+import PositioningGlossary from "./pages/PositioningGlossary";
+import PositioningFrameworkGuide from "./pages/PositioningFrameworkGuide";
+import PositioningMistakes from "./pages/PositioningMistakes";
 import BrowserCompatibilityCheck from "./components/BrowserCompatibilityCheck";
 
 const queryClient = new QueryClient();
@@ -23,6 +26,9 @@ const App = () => (
             <Route path="/" element={<ResponsiveRouteHandler />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/about" element={<About />} />
+            <Route path="/positioning-glossary" element={<PositioningGlossary />} />
+            <Route path="/positioning-framework-guide" element={<PositioningFrameworkGuide />} />
+            <Route path="/positioning-mistakes" element={<PositioningMistakes />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
